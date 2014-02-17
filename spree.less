@@ -1,0 +1,45 @@
+html, body {
+	background-color: white;
+	font-family: 'Open Sans', sans-serif;
+	color: black;
+	margin: 0;
+	padding: 0;
+}
+
+.go-to-mobile {
+	background-color: red;
+	color: white;
+	padding: 1em;
+	text-align: center;
+}
+
+@media only screen and (max-width: 40em) {
+	.go-to-mobile {
+		display: none;
+	}
+	.main {
+		min-height: 40em;
+		background: url("nebula.jpg");
+		background-position: -5em 0;
+		color: white;
+		padding: 0.7em;
+	}
+	.hamburger {
+		background-image: url("sprite@2x.png");
+		width: 40px;
+		height: 40px;
+		background-position: 0 -40px;
+		float: left;
+	}
+	h1 {
+		margin: 0;
+		float: right;
+		font-weight: normal;
+		text-align: center;
+	}
+	span {
+		clear: both;
+		margin: 5em auto;
+		display: block;
+	}
+}
