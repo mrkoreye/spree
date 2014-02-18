@@ -1,19 +1,18 @@
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to spree.";
-  };
-
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  });
+	Template.main.events({
+		"click .hamburger": function(e) {
+			e.stopPropagation();
+			$('.main').toggleClass('menu-open');
+			$('.menu').toggleClass('menu-open');
+		},
+		"click .main": function() {
+			var $main = $('.main');
+			if ($main.hasClass('menu-open')) {
+				$main.toggleClass('menu-open');
+				$('.menu').toggleClass('menu-open');
+			}
+		}
+	})
 }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
+
