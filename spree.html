@@ -6,24 +6,29 @@
 
 <body>
 	<div class="go-to-mobile">Check it out on mobile, breh</div>
-  {{> main}}
-  {{> menu}}
+	{{#constant}}
+  		{{> main}}
+  	  	{{> menu}}
+  	{{/constant}}
 </body>
 
 <template name="main">
 	<div class="main">
-		<div class="hamburger"></div>
+		<div class="hamburgers">
+			<div class="hamburger-front"></div>
+			<div class="hamburger-back"></div>
+		</div>
 		<h1>Spree</h1>
-		<span>Tap the icon in the upper left to start shopping. Choose a category and swipe down to put items in your bag.</span>
 	</div>
 </template>
 
 <template name="menu">
 	<div class="menu">
+		<div class="hamburger-menu"></div>
 		<span>Women</span>
 		<span>Bags</span>
 		<span>Jewelery</span>
 		<span>Shoes</span>
-		<span class="bag">Bag</span>
+		<span>Bag</span>
 	</div>
 </template>
