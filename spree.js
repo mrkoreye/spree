@@ -76,13 +76,21 @@ if (Meteor.isClient) {
 	Template.menu.events({
 		"tap .hamburger-menu, click .hamburger-menu": function() {
 			$('.menu').hide();
-			$('.main').css('display', 'block');
+			
+			$('.main').show();
 		
+			var removeStyle = function() {
+				$('.menu').attr('style', '');
+			}
+			
 			move('.main')
 				.scale(1)
 				.set('opacity', 1)
 				.duration(500)
+				.then(removeStyle)
 				.end()
+				
+			
 		}
 	});
 }
