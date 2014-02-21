@@ -5,7 +5,7 @@ if (Meteor.isClient) {
 		animateBlip = function() {
 			var moveBack = move('.hamburger-back')
 				.scale(1)
-				.set('background-color', 'white')
+				.set('background-color', '#FFD300')
 				.duration(0)
 				.end();
 				
@@ -15,7 +15,7 @@ if (Meteor.isClient) {
 				.end();
 				
 			move('.hamburger-back')
-				.scale(3)
+				.scale(4)
 				.set('opacity', 0)
 				.set('background-color', 'black')
 				.duration(2500)
@@ -36,11 +36,6 @@ if (Meteor.isClient) {
 				var items = $('.menu span');
 				$('.main').hide();
 				$('.menu').show();
-				
-				move('.menu')
-					.set('opacity', 1)
-					.duration(200)
-					.end();
 					
 				_.each(items, function(item) {
 					move(item)
@@ -49,18 +44,19 @@ if (Meteor.isClient) {
 						.end();
 					
 					move(item)
+						.set('opacity', 1)
 						.scale(1)
-						.duration(300)
+						.duration(1000)
 						.delay(delay)
-						.ease('in')
+						.ease('ease-out-back')
 						.end();
 					
 					delay += 50;
 				})
 				
 				move('.hamburger-menu')
-					.set('opacity', 0.8)
-					.duration(3000)
+					.set('opacity', 0.4)
+					.duration(5000)
 					.end();
 			}
 			
@@ -90,6 +86,7 @@ if (Meteor.isClient) {
 
 			var flyIn = function() {
 				move('.main')
+					.ease('cubic-bezier(0.175, 0.885, 0.18, 1.1)')
 					.scale(1)
 					.set('opacity', 1)
 					.duration(500)
@@ -97,11 +94,23 @@ if (Meteor.isClient) {
 					.end()
 			}
 			
-			$('.menu').hide();
-			$('.main').show({
-				duration: 0,
-				complete: flyIn
-			});
+			var hideMenu = function() {
+				$('.menu').hide()
+			}
+			var startMain = function() {
+				$('.main').show({
+					duration: 0,
+					complete: flyIn
+				});
+			}
+			
+			move('.menu')
+				.scale(0)
+				.set('opacity', 0)
+				.duration(300)
+				.then(hideMenu)
+				.then(startMain)
+				.end();
 		}
 	});
 }
