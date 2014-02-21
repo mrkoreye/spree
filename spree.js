@@ -36,6 +36,10 @@ if (Meteor.isClient) {
 				var items = $('.menu span');
 				$('.main').hide();
 				$('.menu').show();
+				move('.main')
+					.scale(0)
+					.duration(0)
+					.end()
 					
 				_.each(items, function(item) {
 					move(item)
