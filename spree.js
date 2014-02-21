@@ -75,22 +75,33 @@ if (Meteor.isClient) {
 	
 	Template.menu.events({
 		"tap .hamburger-menu, click .hamburger-menu": function() {
-			$('.menu').hide();
-			
-			$('.main').show();
-		
-			var removeStyle = function() {
-				$('.menu').attr('style', '');
+			var removeStyles = function() {
+				var elementsToUnStyle = [
+					$('.main'), 
+					$('.menu'),
+					$('.hamburger-menu'),
+					$('span')
+				];
+				
+				_.each(elementsToUnStyle, function(item) {
+					item.attr('style', '');
+				});
+			}
+
+			var flyIn = function() {
+				move('.main')
+					.scale(1)
+					.set('opacity', 1)
+					.duration(500)
+					.then(removeStyles)
+					.end()
 			}
 			
-			move('.main')
-				.scale(1)
-				.set('opacity', 1)
-				.duration(500)
-				.then(removeStyle)
-				.end()
-				
-			
+			$('.menu').hide();
+			$('.main').show({
+				duration: 0,
+				complete: flyIn
+			});
 		}
 	});
 }
